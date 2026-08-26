@@ -7,7 +7,7 @@ import sys
 
 # Force mock mode for all tests
 os.environ["MOCK_MODE"] = "true"
-os.environ["DATABASE_PATH"] = "data/test_drishti.db"
+os.environ["DATABASE_PATH"] = "data/test_copycop.db"
 
 import pytest
 import numpy as np

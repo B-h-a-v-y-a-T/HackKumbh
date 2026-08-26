@@ -1,5 +1,5 @@
 """
-Drishti - Centralized Configuration
+CopyCop - Centralized Configuration
 
 All settings loaded from environment variables / .env file.
 No values are hard-coded; everything is configurable.
@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     )
 
     # --- General ---
-    app_name: str = "Drishti"
+    app_name: str = "CopyCop"
     app_version: str = "0.1.0"
     host: str = "0.0.0.0"
     port: int = 8000
@@ -86,7 +86,7 @@ class Settings(BaseSettings):
     evidence_retention_hours: int = 24
 
     # --- Storage ---
-    database_path: str = "data/drishti.db"
+    database_path: str = "data/copycop.db"
     evidence_storage_path: str = "data/evidence"
 
     # --- Part 1: Perception Pipeline ---

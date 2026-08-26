@@ -93,7 +93,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onLogin }) => {
   // Generate real, scannable QR code for Google Authenticator
   useEffect(() => {
     const account = email.trim() || 'invigilator@university.edu';
-    const otpAuthUrl = `otpauth://totp/DHRISTI%20AI:${encodeURIComponent(account)}?secret=${secretKey}&issuer=DHRISTI%20AI&algorithm=SHA1&digits=6&period=30`;
+    const otpAuthUrl = `otpauth://totp/COPYCOP%20AI:${encodeURIComponent(account)}?secret=${secretKey}&issuer=COPYCOP%20AI&algorithm=SHA1&digits=6&period=30`;
     
     QRCode.toDataURL(otpAuthUrl, {
       width: 240,

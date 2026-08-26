@@ -1,5 +1,5 @@
 /**
- * DHRISTI — Interactive Live Invigilator Console
+ * COPYCOP — Interactive Live Invigilator Console
  * Inspired by Reference 2 UI with telemetry cards, pose throughput charts,
  * explainable alert timeline, and real-time human triage controls.
  */

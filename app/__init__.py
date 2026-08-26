@@ -1,1 +1,1 @@
-# Drishti - Privacy-First AI Video Analytics for Examination Monitoring
+# CopyCop - Privacy-First AI Video Analytics for Examination Monitoring

@@ -1,5 +1,5 @@
 ﻿"""
-Constants, enums, and keypoint index maps for Dhristi perception pipeline.
+Constants, enums, and keypoint index maps for CopyCop perception pipeline.
 
 COCO-WholeBody 133-keypoint layout (used by RTMW):
   Body:       0–16   (17 keypoints)

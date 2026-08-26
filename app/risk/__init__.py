@@ -1,1 +1,1 @@
-# Drishti Risk — Unified risk engine package
+# CopyCop Risk — Unified risk engine package

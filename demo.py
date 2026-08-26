@@ -1,5 +1,5 @@
 """
-Drishti Demo — Demonstrates the complete pipeline.
+CopyCop Demo — Demonstrates the complete pipeline.
 
 Usage:
     python demo.py
@@ -31,7 +31,7 @@ import numpy as np
 
 def main():
     print("=" * 60)
-    print("  DRISHTI -- AI Video Analytics Demo")
+    print("  COPYCOP -- AI Video Analytics Demo")
     print("  Privacy-First Examination Monitoring")
     print("=" * 60)
     print()

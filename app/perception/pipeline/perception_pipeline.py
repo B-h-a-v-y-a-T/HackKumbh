@@ -407,7 +407,7 @@ class PerceptionPipeline:
                 vis_frame = self.visualizer.draw(frame, output)
                 if vis_frame is not None:
                     import cv2
-                    cv2.imshow("Dhristi — Perception Pipeline", vis_frame)
+                    cv2.imshow("CopyCop — Perception Pipeline", vis_frame)
                     key = cv2.waitKey(1) & 0xFF
                     if key == ord("q") or key == 27:
                         logger.info("User requested stop.")

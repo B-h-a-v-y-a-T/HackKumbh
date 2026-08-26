@@ -4,7 +4,7 @@ A standalone, production-ready AI examination monitoring system. Produces **stru
 
 ## Integrated 4-Part Architecture
 
-Drishti unifies live perception, behaviour & spatial intelligence, high-resolution ROI verification, and real-time dashboard orchestration:
+CopyCop unifies live perception, behaviour & spatial intelligence, high-resolution ROI verification, and real-time dashboard orchestration:
 
 1. **Part 1 — Live Perception, Pose & Tracking** (`app/perception/`):
    - Fast YOLO-pose body detection (17 keypoints) + ByteTrack multi-person tracking
@@ -62,7 +62,7 @@ CAMERA / VIDEO / MOCK
 ### 1. Install
 
 ```bash
-cd Drishti
+cd CopyCop
 pip install -r requirements.txt
 cp .env.example .env   # Or use existing .env
 ```

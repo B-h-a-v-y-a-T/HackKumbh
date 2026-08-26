@@ -132,7 +132,7 @@ def export_session_report_csv(
             ])
 
         output.seek(0)
-        filename = f"drishti_report_{session_id.replace(' ', '_')}.csv"
+        filename = f"copycop_report_{session_id.replace(' ', '_')}.csv"
 
         return StreamingResponse(
             iter([output.getvalue()]),

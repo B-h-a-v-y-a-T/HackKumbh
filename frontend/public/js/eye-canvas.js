@@ -1,5 +1,5 @@
 /**
- * DHRISTI — Digital AI Eye Visualizer
+ * COPYCOP — Digital AI Eye Visualizer
  * Futuristic Computer-Vision Centerpiece with:
  * - Radiant Warm Sunset Gradient & 3D Rotating Dotted Sphere Matrix
  * - Dynamic Radiating Orange UI Sparks & Emitter Flares (Sparks shooting out from the eye)

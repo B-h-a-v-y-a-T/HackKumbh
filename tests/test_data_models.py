@@ -1,5 +1,5 @@
 ﻿"""
-Unit tests for Dhristi core data models.
+Unit tests for CopyCop core data models.
 
 Tests serialization, geometry, and construction of all data model classes.
 """

@@ -360,7 +360,7 @@ class AsyncPipelineWorker:
         cv2.circle(canvas, (cx, cy), 50 + pulse, (30, 45, 60), 2, cv2.LINE_AA)
         cv2.circle(canvas, (cx, cy), 35, (255, 122, 42), 2, cv2.LINE_AA)
         cv2.circle(canvas, (cx, cy), 8, (255, 122, 42), -1, cv2.LINE_AA)
-        title = "DHRISTI AI  LIVE WEBCAM PERCEPTION"
+        title = "COPYCOP AI  LIVE WEBCAM PERCEPTION"
         sub = "CONNECTING HIGH-FPS HARDWARE SENSOR..."
         cv2.putText(canvas, title, (cx - 240, cy + 90), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (240, 240, 240), 2, cv2.LINE_AA)
         cv2.putText(canvas, sub, (cx - 220, cy + 125), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 230, 118), 1, cv2.LINE_AA)

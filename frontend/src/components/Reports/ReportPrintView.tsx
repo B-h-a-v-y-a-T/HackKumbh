@@ -14,7 +14,7 @@ export const ReportPrintView: React.FC<ReportPrintViewProps> = ({ summary }) => 
       <div className="border-b-2 border-[#171C18] pb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-[#171C18]">
-            COPYCOP | DRISHTI EXAMINATION MONITORING REPORT
+            COPYCOP | COPYCOP EXAMINATION MONITORING REPORT
           </h1>
           <p className="text-xs text-[#5E6962] mt-1 font-bold">
             Autonomous AI Multi-Tier Examination Analytics & Integrity Evidence Audit

@@ -50,7 +50,7 @@ async def get_status():
     worker = get_worker()
     return {
         "status": "ONLINE",
-        "system_name": "Drishti — AI Examination Monitoring",
+        "system_name": "CopyCop — AI Examination Monitoring",
         "version": "1.0.0",
         "source_mode": worker.source_mode if worker else "mock",
         "privacy_guarantees": {

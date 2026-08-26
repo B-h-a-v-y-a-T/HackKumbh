@@ -1,5 +1,5 @@
 /**
- * DHRISTI — Main Application Controller
+ * COPYCOP — Main Application Controller
  * Handles Theme Toggling (Dark/Light), Scroll Reveals, Navigation,
  * and Component Initialization.
  */
@@ -53,7 +53,7 @@ function initDashboardTriggers() {
  */
 function initThemeToggle() {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const savedTheme = localStorage.getItem('copycop_theme') || localStorage.getItem('dhristi_theme') || 'light';
+  const savedTheme = localStorage.getItem('copycop_theme') || localStorage.getItem('copycop_theme') || 'light';
 
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);

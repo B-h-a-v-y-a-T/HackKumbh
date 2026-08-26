@@ -1,5 +1,5 @@
 """
-Integration tests for Drishti Unified System.
+Integration tests for CopyCop Unified System.
 
 Verifies end-to-end integration across all 4 parts:
   Part 1: Live Perception (StudentState, Keypoints, BBox, Tracking)

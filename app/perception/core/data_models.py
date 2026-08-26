@@ -1,8 +1,8 @@
 """
-Dhristi core data models — the output contract for Part 1.
+CopyCop core data models — the output contract for Part 1.
 
 Every struct here is part of the public API that Parts 2–4 consume.
-All fields are documented. Schema version is tracked in ``dhristi.version``.
+All fields are documented. Schema version is tracked in ``copycop.version``.
 """
 
 from __future__ import annotations

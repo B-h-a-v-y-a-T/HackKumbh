@@ -1,5 +1,5 @@
 /**
- * DHRISTI — Exam Hall Seating Matrix & Movement Simulation
+ * COPYCOP — Exam Hall Seating Matrix & Movement Simulation
  * Interactive examination-hall diagram with real-time pose vectors,
  * gaze indicators, and anonymous student telemetry.
  */

@@ -1,5 +1,5 @@
 """
-Drishti — FastAPI Application Entry Point.
+CopyCop — FastAPI Application Entry Point.
 
 Lifespan handler initializes database, model registry, and background workers.
 All models are loaded once and cached in the registry.

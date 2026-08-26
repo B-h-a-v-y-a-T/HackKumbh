@@ -1,1 +1,1 @@
-# Drishti Pipeline — Async worker for real-time processing
+# CopyCop Pipeline — Async worker for real-time processing

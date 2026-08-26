@@ -1,5 +1,5 @@
 /**
- * DHRISTI — AI Exam Integrity Client Engine
+ * COPYCOP — AI Exam Integrity Client Engine
  * Handles synchronized MJPEG stream, WebSocket telemetry, webcam streaming, and student risk console.
  */
 

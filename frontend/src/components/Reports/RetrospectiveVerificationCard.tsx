@@ -15,7 +15,7 @@ export const RetrospectiveVerificationCard: React.FC<RetrospectiveVerificationCa
           <h3 className="text-sm font-black text-[#171C18]">Retrospective 15-Minute 2nd-Pass Verification</h3>
         </div>
         <span className="text-[10px] font-black text-[#FF7A2A] bg-[#FFF2EA] px-2 py-0.5 rounded-md border border-[#FFD9C4]">
-          Drishti Key Differentiator
+          CopyCop Key Differentiator
         </span>
       </div>
 

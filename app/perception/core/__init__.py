@@ -1,4 +1,4 @@
-"""Dhristi core sub-package — data models, constants, enums."""
+"""CopyCop core sub-package — data models, constants, enums."""
 
 from app.perception.core.constants import (
     BodyPart,

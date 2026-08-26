@@ -1,4 +1,4 @@
-# Drishti — Contraband Detection Dataset
+# CopyCop — Contraband Detection Dataset
 # YOLO format: class_id x_center y_center width height (normalized)
 
 path: datasets/contraband
