@@ -1,4 +1,4 @@
-# Drishti — Privacy-First AI Video Analytics for Examination Monitoring
+# CopyCop — Privacy-First AI Video Analytics for Examination Monitoring
 
 A standalone, production-ready AI examination monitoring system. Produces **structured evidence** for human review — **never automatic cheating verdicts**.
 
