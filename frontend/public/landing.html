@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CopyCop — Privacy-First AI Examination Monitoring</title>
+  <meta name="description" content="CopyCop uses computer vision, pose estimation, and temporal behavioural intelligence to help invigilators identify unusual examination behaviour in real time without facial recognition.">
+  <meta name="keywords" content="AI exam proctoring, examination monitoring, pose estimation, computer vision invigilation, privacy first AI, YOLO11-pose, ByteTrack">
+  
+  <!-- OpenGraph Meta -->
+  <meta property="og:title" content="CopyCop — Privacy-First AI Examination Monitoring">
+  <meta property="og:description" content="AI that understands exam-hall behaviour through anonymous pose estimation and explainable alerts.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="/logo.png">
+</head>
+<body>
+
+  <!-- Ambient Background Grids -->
+  <div class="bg-atmosphere" aria-hidden="true"></div>
+  <div class="bg-grid-lines" aria-hidden="true"></div>
+
+  <!-- Floating Pill Navigation (Daynight Inspired) -->
+  <header class="nav-wrapper">
+    <nav class="nav-pill" aria-label="Main Navigation">
+      <a href="#" class="nav-brand" id="brandLogo">
+        <img src="/logo.png" alt="CopyCop Logo" class="brand-logo-img" />
+        <span class="brand-name">
+          <span class="brand-name-copy">Copy</span><span class="brand-name-cop">Cop</span>
+        </span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#the-problem" class="nav-link">The Problem</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#privacy" class="nav-link">Privacy</a></li>
+        <li><a href="#explainable-ai" class="nav-link">Explainable AI</a></li>
+        <li><a href="#technology" class="nav-link">Technology</a></li>
+        <li><a href="#live-console" class="nav-link">Live Console</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle (Dark / Light) -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Light and Dark Mode" title="Toggle Theme">
+          <svg id="themeSunIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg id="themeMoonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <a href="/" class="btn btn-pill-action trigger-live-demo">View Demo</a>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION (SIDE-BY-SIDE SPLIT: TEXT LEFT, EYE RIGHT) -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        
+        <div class="hero-split-grid">
+          <!-- LEFT MOST SIDE: HERO TEXT CONTENT -->
+          <div class="hero-content">
+            
+            <h1 class="hero-headline">
+              AI That Understands<br>
+              <span class="accent-italic">Exam-Hall Behaviour.</span>
+            </h1>
+
+            <p class="hero-subtext">
+              Real-time, privacy-first examination monitoring powered by pose estimation, 
+              temporal behaviour analysis and explainable AI.
+            </p>
+
+            <div class="hero-action-buttons" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.85rem; margin-bottom: 1.75rem;">
+              <a href="#the-problem" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.65rem;">
+                <span class="stream-pulse-icon"></span>
+                <span>Explore Technology</span>
+              </a>
+              <a href="#how-it-works" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.65rem;">
+                <span class="stream-pulse-icon"></span>
+                <span>Processing Pipeline</span>
+              </a>
+              <a href="#features" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.65rem;">
+                <span class="stream-pulse-icon"></span>
+                <span>Core Features</span>
+              </a>
+              <a href="#explainable-ai" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.65rem;">
+                <span class="stream-pulse-icon"></span>
+                <span>Explainable AI</span>
+              </a>
+              <a href="#live-console" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.65rem;">
+                <span class="stream-pulse-icon"></span>
+                <span>Live Command Center</span>
+              </a>
+            </div>
+
+            <div class="hero-trust-line">
+              <div class="trust-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Anonymous Tracking</span>
+              </div>
+              <div class="trust-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                <span>Explainable Alerts</span>
+              </div>
+              <div class="trust-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+                <span>Human-in-the-Loop</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT MOST SIDE: DIGITAL AI EYE CENTERPIECE -->
+          <div class="hero-visual-stage">
+            <div class="eye-ambient-glow"></div>
+            
+            <div class="eye-canvas-container">
+              <!-- Canvas with glowing sunset eye + 3D rotating dots + radiating orange sparks -->
+              <canvas id="digitalEyeCanvas" width="720" height="540"></canvas>
+
+              <!-- Pipeline Mode Selector Bar -->
+              <div class="eye-mode-bar" aria-label="Visualizer Stage Selector">
+                <button class="eye-mode-btn active" data-mode="vision">Vision</button>
+                <button class="eye-mode-btn" data-mode="skeleton">Skeleton</button>
+                <button class="eye-mode-btn" data-mode="behaviour">Behaviour</button>
+                <button class="eye-mode-btn" data-mode="insight">Insight</button>
+              </div>
+
+              <!-- Yellow Zero Biometric Storage Pill -->
+              <div class="zero-biometric-badge">
+                <span class="yellow-badge-text">Zero Biometric Storage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE PROBLEM -->
+    <section class="section-problem" id="the-problem">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-tag">Observation Challenge</span>
+          <h2 class="section-title">
+            Examination halls generate more movement than an invigilator can continuously interpret.
+          </h2>
+          <p class="section-subtitle">
+            Manual monitoring makes sustained observation difficult. Short glances, body turns, 
+            unusual hand movements and coordinated behaviour can be missed or noticed too late.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          
+          <div class="problem-info reveal-on-scroll">
+            <h3 class="problem-statement">
+              Simultaneous 360° temporal memory for 40+ candidates exceeds human observation bandwidth.
+            </h3>
+
+            <div class="problem-points">
+              <div class="problem-point">
+                <div class="problem-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <div class="problem-text">
+                  <h4>Micro-Glances & Transient Turning</h4>
+                  <p>A 1.5-second glance towards a neighbour's desk occurs between invigilator sweep cycles without persistent record.</p>
+                </div>
+              </div>
+
+              <div class="problem-point">
+                <div class="problem-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="problem-text">
+                  <h4>Coordinated Spatial Passing</h4>
+                  <p>Synchronized motion anomalies and shared glance vectors across adjacent rows are difficult to verify manually.</p>
+                </div>
+              </div>
+
+              <div class="problem-point">
+                <div class="problem-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  </svg>
+                </div>
+                <div class="problem-text">
+                  <h4>Absence of Objective Proof</h4>
+                  <p>Subjective recollections cause inconclusive disputes without verifiable, timestamped anatomical tracking.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Exam Hall Seating Matrix -->
+          <div class="hall-simulation-card reveal-on-scroll">
+            <div class="hall-card-header">
+              <div class="hall-title-meta">
+                <span class="hall-badge">HALL 04 — SEATING TOPOLOGY</span>
+                <span style="font-size: 0.8rem; color: var(--text-secondary);">16 Anonymous Desks</span>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold);">
+                LIVE POSE VECTORS
+              </div>
+            </div>
+
+            <!-- 4x4 Grid of interactive desks -->
+            <div class="hall-grid-container" id="hallGridContainer"></div>
+
+            <div class="hall-legend">
+              <div class="legend-item">
+                <span class="telemetry-dot emerald"></span>
+                <span>Baseline Posture</span>
+              </div>
+              <div class="legend-item">
+                <span class="telemetry-dot amber"></span>
+                <span>Flagged Deviation (T14)</span>
+              </div>
+              <div class="legend-item">
+                <span style="color: var(--accent-gold);">Click any desk to inspect</span>
+              </div>
+            </div>
+
+            <div id="hallTelemetryDetails" style="margin-top: 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border-subtle);"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: HOW COPYCOP WORKS (PIPELINE) -->
+    <section class="section-pipeline" id="how-it-works">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-tag">Processing Pipeline</span>
+          <h2 class="section-title">
+            From Camera Pixels to Explainable Insights.
+          </h2>
+          <p class="section-subtitle">
+            CopyCop converts standard video streams into anonymous skeletal graphs, 
+            evaluating temporal behaviour without capturing facial identities.
+          </p>
+        </div>
+
+        <div class="pipeline-flow">
+          
+          <div class="pipeline-step-card reveal-on-scroll">
+            <div class="pipeline-badge-num">01 / CAMERA</div>
+            <div class="pipeline-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="pipeline-name">Camera Feed</h3>
+            <p class="pipeline-desc">Standard RTSP or IP exam hall overhead video stream.</p>
+          </div>
+
+          <div class="pipeline-step-card reveal-on-scroll">
+            <div class="pipeline-badge-num">02 / PERCEPTION</div>
+            <div class="pipeline-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+              </svg>
+            </div>
+            <h3 class="pipeline-name">YOLO11-Pose</h3>
+            <p class="pipeline-desc">Real-time pose perception & ByteTrack multi-person IDs.</p>
+          </div>
+
+          <div class="pipeline-step-card reveal-on-scroll">
+            <div class="pipeline-badge-num">03 / SKELETAL</div>
+            <div class="pipeline-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="5" r="3"></circle>
+                <line x1="12" y1="8" x2="12" y2="15"></line>
+                <line x1="12" y1="15" x2="8" y2="21"></line>
+                <line x1="12" y1="15" x2="16" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="pipeline-name">Skeletal Data</h3>
+            <p class="pipeline-desc">17 anonymous anatomical keypoints & gaze direction vectors.</p>
+          </div>
+
+          <div class="pipeline-step-card reveal-on-scroll">
+            <div class="pipeline-badge-num">04 / INTELLIGENCE</div>
+            <div class="pipeline-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v4"></path>
+                <path d="M12 18v4"></path>
+                <path d="M2 12h4"></path>
+                <path d="M18 12h4"></path>
+              </svg>
+            </div>
+            <h3 class="pipeline-name">Behaviour AI</h3>
+            <p class="pipeline-desc">Temporal and spatial analysis across sliding time windows.</p>
+          </div>
+
+          <div class="pipeline-step-card reveal-on-scroll">
+            <div class="pipeline-badge-num">05 / VERIFICATION</div>
+            <div class="pipeline-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <h3 class="pipeline-name">Object Audit</h3>
+            <p class="pipeline-desc">High-resolution ROI checks for phones, chits, and unauthorized items.</p>
+          </div>
+
+          <div class="pipeline-step-card reveal-on-scroll">
+            <div class="pipeline-badge-num">06 / INVIGILATOR</div>
+            <div class="pipeline-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              </svg>
+            </div>
+            <h3 class="pipeline-name">Explainable Feed</h3>
+            <p class="pipeline-desc">Real-time alerts with confidence score and evidence clip.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+        <!-- SECTION 4: CORE FEATURES (2x2 RESPONSIVE GRID) -->
+    <section class="section-features" id="features">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-tag">Core Features</span>
+          <h2 class="section-title">
+            Intelligent Behaviour Analysis.
+          </h2>
+          <p class="section-subtitle">
+            Engineered to distinguish between natural candidate movement and genuine examination anomalies.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          
+          <!-- Card 1: Privacy-First Monitoring -->
+          <div class="feature-card reveal-on-scroll">
+            <div class="feature-card-header">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <span class="feature-tag feature-tag-emerald">Identity Protected</span>
+            </div>
+            <div class="feature-card-body">
+              <h3 class="feature-title">Privacy-First Monitoring</h3>
+              <p class="feature-desc">
+                Anonymous skeletal tracking without facial identification. Student identities remain completely 
+                untracked and decoupled from biometric databases.
+              </p>
+            </div>
+            <div class="feature-telemetry-footer">
+              <span class="telemetry-dot dot-emerald"></span>
+              <span class="telemetry-text">17 Anatomical Keypoints &bull; Biometrics: ZERO</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Temporal Behaviour Intelligence -->
+          <div class="feature-card reveal-on-scroll">
+            <div class="feature-card-header">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <span class="feature-tag feature-tag-amber">Temporal Graph</span>
+            </div>
+            <div class="feature-card-body">
+              <h3 class="feature-title">Temporal Behaviour Intelligence</h3>
+              <p class="feature-desc">
+                Understands repeated movements and behavioural sequences over continuous time windows rather than isolated static frames.
+              </p>
+            </div>
+            <div class="feature-telemetry-footer">
+              <span class="telemetry-dot dot-amber"></span>
+              <span class="telemetry-text">Multi-Frame Temporal Graph (5s Sliding Window)</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Spatial Group Intelligence -->
+          <div class="feature-card reveal-on-scroll">
+            <div class="feature-card-header">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                </svg>
+              </div>
+              <span class="feature-tag feature-tag-orange">Spatial Cluster</span>
+            </div>
+            <div class="feature-card-body">
+              <h3 class="feature-title">Spatial Group Intelligence</h3>
+              <p class="feature-desc">
+                Identifies coordinated patterns between nearby students, such as simultaneous body turns, pass gestures, and mutual gaze.
+              </p>
+            </div>
+            <div class="feature-telemetry-footer">
+              <span class="telemetry-dot dot-orange"></span>
+              <span class="telemetry-text">Cluster Proximity Engine &bull; Dynamic Hall G2</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Adaptive False-Positive Control -->
+          <div class="feature-card reveal-on-scroll">
+            <div class="feature-card-header">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20v-6M6 20V10M18 20V4"></path>
+                </svg>
+              </div>
+              <span class="feature-tag feature-tag-blue">Adaptive Filter</span>
+            </div>
+            <div class="feature-card-body">
+              <h3 class="feature-title">Adaptive False-Positive Control</h3>
+              <p class="feature-desc">
+                Personal baselines, visibility awareness, and multi-stage verification prevent false alerts from natural exam movements.
+              </p>
+            </div>
+            <div class="feature-telemetry-footer">
+              <span class="telemetry-dot dot-emerald"></span>
+              <span class="telemetry-text">Baseline Filter Calibrated &bull; 87% Verified</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+        <!-- SECTION 5: PRIVACY GUARANTEES (3-COLUMN RESPONSIVE FLOW) -->
+    <section class="section-privacy" id="privacy">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-tag">Privacy Guarantees</span>
+          <h2 class="section-title">
+            Observe Behaviour. <span class="accent-italic">Not Identity.</span>
+          </h2>
+          <p class="section-subtitle">
+            CopyCop analyses skeletal movement and behavioural patterns instead of identifying students by face or biometric identity.
+          </p>
+        </div>
+
+        <!-- 3-Column Horizontal Transformation Cards -->
+        <div class="privacy-stages-grid">
+          
+          <!-- 01 . VIDEO -->
+          <div class="privacy-stage-card reveal-on-scroll">
+            <div class="privacy-stage-badge">01 &bull; VIDEO</div>
+            <div class="privacy-stage-visual">
+              <div class="privacy-visual-box">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+                  <circle cx="12" cy="12" r="3.5"></circle>
+                </svg>
+              </div>
+            </div>
+            <h3 class="privacy-card-title">Video Stream</h3>
+            <p class="privacy-card-desc">Volatile RAM only.</p>
+            <span class="privacy-pill-red">No Face Storage</span>
+          </div>
+
+          <!-- 02 . SKELETON -->
+          <div class="privacy-stage-card reveal-on-scroll">
+            <div class="privacy-stage-badge">02 &bull; SKELETON</div>
+            <div class="privacy-stage-visual">
+              <div class="privacy-visual-box">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="1.6">
+                  <circle cx="12" cy="5" r="2.5"></circle>
+                  <line x1="12" y1="7.5" x2="12" y2="15"></line>
+                  <line x1="12" y1="15" x2="7" y2="21"></line>
+                  <line x1="12" y1="15" x2="17" y2="21"></line>
+                  <line x1="6" y1="10" x2="18" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <h3 class="privacy-card-title">Skeleton Graph</h3>
+            <p class="privacy-card-desc">17 anatomical keypoints.</p>
+            <span class="privacy-pill-amber">Anatomical Only</span>
+          </div>
+
+          <!-- 03 . TRACK ID -->
+          <div class="privacy-stage-card reveal-on-scroll">
+            <div class="privacy-stage-badge">03 &bull; TRACK ID</div>
+            <div class="privacy-stage-visual">
+              <div class="privacy-visual-box">
+                <div class="privacy-track-id-token">
+                  T01 &bull; T07 &bull; T14
+                </div>
+              </div>
+            </div>
+            <h3 class="privacy-card-title">Anonymous Track ID</h3>
+            <p class="privacy-card-desc">Ephemeral session tokens.</p>
+            <span class="privacy-pill-emerald">Zero PII Storage</span>
+          </div>
+
+        </div>
+
+        <!-- 3-Column Horizontal Bottom Guarantees Strip -->
+        <div class="privacy-guarantees-strip">
+          <div class="guarantee-box reveal-on-scroll">
+            <div class="guarantee-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <div class="guarantee-text">
+              <h4>On-Premises Edge Processing</h4>
+              <p>All video frames are processed locally inside the hall. No unencrypted video leaves the local network.</p>
+            </div>
+          </div>
+
+          <div class="guarantee-box reveal-on-scroll">
+            <div class="guarantee-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="guarantee-text">
+              <h4>No Facial Biometrics</h4>
+              <p>CopyCop does not perform facial recognition, iris scans, or identity matching of any student.</p>
+            </div>
+          </div>
+
+          <div class="guarantee-box reveal-on-scroll">
+            <div class="guarantee-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              </svg>
+            </div>
+            <div class="guarantee-text">
+              <h4>Advisory Alerts Only</h4>
+              <p>AI observation assists invigilators. Final decisions and verification remain with the human invigilator.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: EXPLAINABLE AI -->
+    <section class="section-explainable" id="explainable-ai">
+      <div class="container">
+        
+        <div class="explainable-layout">
+          
+          <div class="explainable-content reveal-on-scroll">
+            <span class="section-tag">Explainable AI</span>
+            <h2>Every Alert Has a Reason.</h2>
+            <p>
+              CopyCop eliminates black-box uncertainty by giving invigilators clear anatomical observations, 
+              historical frequency, and confidence scores for every flagged event.
+            </p>
+
+            <div class="evidence-breakdown-list">
+              <div class="evidence-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Timestamped 5-second pose trajectory breakdown</span>
+              </div>
+              <div class="evidence-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Candidate baseline orientation & writing activity delta</span>
+              </div>
+              <div class="evidence-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Spatial group correlation with neighbouring desks</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary btn-triage-action" data-action="notify">
+                Simulate Invigilator Notice
+              </button>
+              <button class="btn btn-secondary btn-triage-action" data-action="dismiss">
+                Mark False Positive (Calibrate)
+              </button>
+            </div>
+          </div>
+
+          <!-- Explainable Event Card (User Specification) -->
+          <div class="event-card-container reveal-on-scroll">
+            <div class="explainable-event-card">
+              <div class="event-card-glow-bar"></div>
+
+              <div class="event-card-header">
+                <div class="event-track-id">T14 · S14</div>
+                <div class="event-status-tag">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                  </svg>
+                  <span>REVIEW RECOMMENDED</span>
+                </div>
+              </div>
+
+              <h3 class="event-reason-title">Repeated Neighbour Attention</h3>
+
+              <div class="event-timestamp-range">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>10:42:13 — 10:42:18</span>
+              </div>
+
+              <div class="event-observations">
+                <div class="event-obs-item">
+                  <span class="obs-bullet"></span>
+                  <span>Head turned <strong>RIGHT (+42° Yaw)</strong></span>
+                </div>
+                <div class="event-obs-item">
+                  <span class="obs-bullet"></span>
+                  <span>Writing activity <strong>stopped (0 CPM)</strong></span>
+                </div>
+                <div class="event-obs-item">
+                  <span class="obs-bullet"></span>
+                  <span>Torso rotated toward neighbouring desk (D-15)</span>
+                </div>
+                <div class="event-obs-item">
+                  <span class="obs-bullet"></span>
+                  <span>Pattern repeated <strong>3× in past 45 seconds</strong></span>
+                </div>
+              </div>
+
+              <div class="event-card-footer">
+                <div class="confidence-gauge">
+                  <div class="gauge-circle">87% Confidence</div>
+                </div>
+                <div class="human-disclaimer">
+                  AI-assisted observation. Final decision remains with the invigilator.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 7: TECHNOLOGY -->
+    <section class="section-tech" id="technology">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-tag">Technology Stack</span>
+          <h2 class="section-title">
+            State-of-the-Art Computer Vision.
+          </h2>
+          <p class="section-subtitle">
+            Purpose-built edge architecture with sub-35ms inference latency.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          
+          <div class="tech-card reveal-on-scroll">
+            <div>
+              <span class="tech-badge-latency">&lt; 14ms PERCEPTION</span>
+              <h3 class="tech-title">YOLO11-Pose</h3>
+              <div class="tech-subtitle">Real-time pose perception</div>
+              <p class="tech-desc">Extracts 17 keypoint anatomical skeletons across high-density halls with extreme spatial precision.</p>
+            </div>
+          </div>
+
+          <div class="tech-card reveal-on-scroll">
+            <div>
+              <span class="tech-badge-latency">&lt; 4ms TRACKING</span>
+              <h3 class="tech-title">ByteTrack</h3>
+              <div class="tech-subtitle">Anonymous multi-person tracking</div>
+              <p class="tech-desc">Associates candidate bounding boxes across video frames, maintaining persistent track IDs without biometrics.</p>
+            </div>
+          </div>
+
+          <div class="tech-card reveal-on-scroll">
+            <div>
+              <span class="tech-badge-latency">TEMPORAL GRAPH</span>
+              <h3 class="tech-title">Temporal Analysis</h3>
+              <div class="tech-subtitle">Behaviour over time</div>
+              <p class="tech-desc">Evaluates sustained movement sequences and posture variations against individual candidate baselines.</p>
+            </div>
+          </div>
+
+          <div class="tech-card reveal-on-scroll">
+            <div>
+              <span class="tech-badge-latency">SPATIAL CLUSTERING</span>
+              <h3 class="tech-title">Spatial Intelligence</h3>
+              <div class="tech-subtitle">Interaction patterns</div>
+              <p class="tech-desc">Models inter-desk distances, mutual gaze intersections, and synchronized motion anomalies between adjacent students.</p>
+            </div>
+          </div>
+
+          <div class="tech-card reveal-on-scroll">
+            <div>
+              <span class="tech-badge-latency">HIGH-RES ROI</span>
+              <h3 class="tech-title">Object Verification</h3>
+              <div class="tech-subtitle">High-resolution ROI analysis</div>
+              <p class="tech-desc">High-resolution ROI checks verify unauthorized devices such as smartphones, smartwatches, or paper chits.</p>
+            </div>
+          </div>
+
+          <div class="tech-card reveal-on-scroll">
+            <div>
+              <span class="tech-badge-latency">&lt; 10ms WEBSOCKET</span>
+              <h3 class="tech-title">FastAPI + WebSocket</h3>
+              <div class="tech-subtitle">Real-time monitoring interface</div>
+              <p class="tech-desc">Ultra-low latency bidirectional telemetry streaming delivering instant explainable alerts directly to invigilator consoles.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 8: LIVE INVIGILATOR COMMAND CONSOLE (REFERENCE 2 UI) -->
+    <section class="section-dashboard-preview" id="live-console">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="section-tag">Live Command Center</span>
+          <h2 class="section-title">
+            Invigilator Console in Action.
+          </h2>
+          <p class="section-subtitle">
+            Real-time telemetry and triage interface inspired by production mission control centers.
+          </p>
+        </div>
+
+        <div class="dash-console-container reveal-on-scroll">
+          
+          <!-- Console Sidebar -->
+          <div class="dash-sidebar">
+            <div class="dash-nav-items">
+              <button class="dash-nav-btn active" title="Overview">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+              </button>
+              <button class="dash-nav-btn" title="Live Video Grid">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                  <line x1="7" y1="2" x2="7" y2="22"></line>
+                  <line x1="17" y1="2" x2="17" y2="22"></line>
+                </svg>
+              </button>
+              <button class="dash-nav-btn" title="Alert History">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--border-medium); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">
+              INV
+            </div>
+          </div>
+
+          <!-- Main Console Area -->
+          <div class="dash-main">
+            
+            <div class="dash-topbar">
+              <div class="dash-breadcrumbs">
+                <span>Examination Halls</span>
+                <span>/</span>
+                <span id="dashHallBreadcrumb"><strong>Hall 04 · Section B</strong></span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <select id="hallFilterSelect" style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-subtle); padding: 0.35rem 0.8rem; border-radius: var(--radius-full); font-family: var(--font-mono); font-size: 0.75rem; cursor: pointer;">
+                  <option value="Hall 04 · Section B">Hall 04 · Section B (Active)</option>
+                  <option value="Hall 01 · Main Auditorium">Hall 01 · Main Auditorium</option>
+                  <option value="Hall 08 · STEM Wing">Hall 08 · STEM Wing</option>
+                </select>
+
+                <div class="dash-search-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <span>Filter by Track ID...</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Grid: Pose Throughput + Alert Queue -->
+            <div class="dash-content-grid">
+              
+              <div class="dash-widget-card">
+                <div class="dash-widget-header">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 24px; height: 24px; border-radius: var(--radius-xs); background: rgba(255, 106, 0, 0.15); color: var(--accent-gold); display: flex; align-items: center; justify-content: center;">
+                      ⇄
+                    </div>
+                    <span class="dash-widget-title">Pose Throughput</span>
+                  </div>
+                  <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">Real-time stream ▾</span>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.5rem; background: rgba(255, 106, 0, 0.12); border-radius: var(--radius-xs); color: var(--accent-gold);">489 keypoints/s</span>
+                    <div class="pose-velocity-chart">
+                      <div class="bar-col"><div class="bar-pill-track"><div class="bar-pill-fill" data-height="45%"></div></div><span class="bar-label">Mon</span></div>
+                      <div class="bar-col"><div class="bar-pill-track"><div class="bar-pill-fill" data-height="65%"></div></div><span class="bar-label">Tue</span></div>
+                      <div class="bar-col"><div class="bar-pill-track"><div class="bar-pill-fill" data-height="85%"></div></div><span class="bar-label">Wed</span></div>
+                      <div class="bar-col"><div class="bar-pill-track"><div class="bar-pill-fill" data-height="95%"></div></div><span class="bar-label" style="color: var(--accent-gold); font-weight: 700;">Thu</span></div>
+                      <div class="bar-col"><div class="bar-pill-track"><div class="bar-pill-fill" data-height="60%"></div></div><span class="bar-label">Fri</span></div>
+                      <div class="bar-col"><div class="bar-pill-track"><div class="bar-pill-fill" data-height="75%"></div></div><span class="bar-label">Sat</span></div>
+                    </div>
+                  </div>
+
+                  <div style="text-align: center; padding: 0 1rem;">
+                    <div style="font-size: 2.2rem;">🏛️</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Hall Geometry</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-emerald); font-weight: 700;">100% Calibrated</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.5rem;">
+                  <span style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--accent-emerald);">+4.2%</span>
+                  <span style="font-size: 0.8rem; color: var(--text-secondary);">tracking stability baseline</span>
+                </div>
+              </div>
+
+              <div class="dash-widget-card">
+                <div class="dash-widget-header">
+                  <span class="dash-widget-title">Live Priority Queue</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); cursor: pointer;">View All (2) &gt;</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <div style="background: var(--bg-tertiary); border: 1px solid rgba(255, 106, 0, 0.35); border-radius: var(--radius-sm); padding: 0.85rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+                      <strong style="font-size: 0.85rem; color: var(--text-primary);">T14 · Repeated Neighbour Attention</strong>
+                      <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">10:42:18</span>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Head yaw deviation +42° towards Desk 15.</p>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="background: rgba(255, 106, 0, 0.18); color: var(--accent-gold); font-size: 0.675rem; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-weight: 700;">Review Needed</span>
+                      <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Confidence: 87%</span>
+                    </div>
+                  </div>
+
+                  <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+                      <strong style="font-size: 0.85rem; color: var(--text-primary);">T08 · Paper Alignment Adjusted</strong>
+                      <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">10:40:02</span>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Brief posture stretch resolved. Baseline restored.</p>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); font-size: 0.675rem; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); font-weight: 700;">Resolved</span>
+                      <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Auto-Validated</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Bottom Metric Cards -->
+            <div class="dash-bottom-grid">
+              <div class="dash-metric-card">
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">Invigilator Coverage</div>
+                <div class="dash-metric-val">94.8%</div>
+                <div style="font-size: 0.75rem; color: var(--accent-emerald); margin-top: 0.25rem;">+2.5% attention density</div>
+              </div>
+
+              <div class="dash-metric-card">
+                <div style="font-size: 0.8rem; color: var(--text-secondary);">Mean Alert Latency</div>
+                <div class="dash-metric-val">28ms</div>
+                <div style="font-size: 0.75rem; color: var(--accent-gold); margin-top: 0.25rem;">Edge inference optimal</div>
+              </div>
+
+              <div class="dash-metric-card highlight">
+                <div style="font-size: 0.8rem; color: var(--text-primary); font-weight: 600;">Monitored Candidates</div>
+                <div class="dash-metric-val" style="color: var(--accent-coral);">28 Active</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">Zero biometric records stored</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 9: FINAL CTA -->
+    <section class="section-final-cta">
+      <div class="container">
+        
+        <div class="final-cta-box reveal-on-scroll">
+          <h2 class="final-cta-title">
+            See More Than Movement.<br>
+            <span class="accent-italic">Understand Behaviour.</span>
+          </h2>
+          
+          <p class="final-cta-subtext">
+            CopyCop gives invigilators the context, evidence and confidence needed to focus attention where it matters.
+          </p>
+
+          <div class="hero-actions" style="margin-bottom: 0;">
+            <a href="/" class="btn btn-primary btn-lg trigger-live-demo">
+              View Demo
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <a href="#the-problem" class="btn btn-secondary btn-lg">Explore CopyCop</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-brand" style="display: flex; align-items: center; gap: 0.65rem; text-decoration: none;">
+            <img src="/logo.png" alt="CopyCop Logo" style="width: 36px; height: 36px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.95); padding: 2px;" />
+            <span class="brand-name" style="font-weight: 900; font-size: 1.35rem; letter-spacing: -0.5px;">
+              <span style="color: #FF7A2A;">Copy</span><span style="color: #171C18;">Cop</span>
+            </span>
+          </a>
+          <p>Privacy-First AI Examination Monitoring powered by pose estimation and explainable behavioural intelligence.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <ul class="footer-links">
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#live-console">Live Console Demo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Privacy & Trust</h5>
+          <ul class="footer-links">
+            <li><a href="#privacy">Privacy Principles</a></li>
+            <li><a href="#explainable-ai">Explainable AI Standard</a></li>
+            <li><a href="#privacy">Zero Biometrics Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <ul class="footer-links">
+            <li><a href="mailto:pilot@copycop.ai">pilot@copycop.ai</a></li>
+            <li><a href="#hero">Schedule Hall Pilot</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-disclaimer-box">
+        <strong>Advisory Notice:</strong> AI-generated behavioural alerts are advisory and do not constitute a determination of misconduct. Final authority remains with authorized human invigilators.
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 CopyCop Systems. All rights reserved.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold);">
+          ● SYSTEM STATUS: ALL EDGE PIPELINES NOMINAL (30 FPS)
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/eye-canvas.js"></script>
+  <script src="js/hall-simulation.js"></script>
+  <script src="js/dashboard-demo.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.trigger-live-demo').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          if (window.parent && window.parent !== window) {
+            e.preventDefault();
+            window.parent.postMessage({ type: 'LAUNCH_DASHBOARD' }, '*');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

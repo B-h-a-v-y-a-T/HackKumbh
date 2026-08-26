@@ -1,0 +1,13 @@
+# Drishti — Contraband Detection Dataset
+# YOLO format: class_id x_center y_center width height (normalized)
+
+path: datasets/contraband
+train: images/train
+val: images/val
+test: images/test
+
+nc: 3
+names:
+  0: mobile_phone
+  1: paper_chit
+  2: prohibited_object

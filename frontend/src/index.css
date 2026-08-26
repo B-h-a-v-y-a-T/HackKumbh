@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Palette Tokens */
+    --light-grey: #D9DDD8;
+    --medium-grey-green: #B9C4BC;
+    --sage-green: #A3B5A8;
+    --dark-sage: #718277;
+    --orange-primary: #FF7A2A;
+    --soft-orange: #F6B28A;
+
+    /* Base & Typography */
+    --bg-app: #EEF0ED;
+    --text-dark: #171C18;
+    --text-charcoal: #3D4741;
+    --text-muted: #5E6962;
+  }
+
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-dark);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ==========================================================
+   iOS LIQUID GLASSMORPHISM DESIGN SYSTEM
+   ========================================================== */
+
+/* 1. Base iOS Liquid Glass Card */
+.glass-card {
+  background: rgba(198, 211, 200, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.08), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+}
+
+/* 2. iOS Liquid Glass Panel (White) */
+.glass-panel-white {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 14px 36px 0 rgba(31, 38, 135, 0.07), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  border-radius: 1.75rem;
+}
+
+/* 3. iOS Liquid Glass Sage */
+.glass-card-sage {
+  background: rgba(198, 211, 200, 0.85);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow: 0 12px 32px 0 rgba(45, 55, 48, 0.08), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.90);
+  border-radius: 1.5rem;
+}
+
+/* 4. Light Orange iOS Liquid Glass Card */
+.glass-card-orange-light {
+  background: rgba(254, 215, 185, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 122, 42, 0.45);
+  box-shadow: 0 10px 28px 0 rgba(255, 122, 42, 0.14), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 1.25rem;
+}
+
+/* 5. Light Grey iOS Liquid Glass Card */
+.glass-card-grey-light {
+  background: rgba(238, 242, 239, 0.78);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 10px 28px 0 rgba(45, 55, 48, 0.06), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 1.25rem;
+}
+
+/* 6. Orange Risk iOS Liquid Glass Card */
+.glass-card-orange {
+  background: rgba(254, 237, 228, 0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 122, 42, 0.50);
+  box-shadow: 0 12px 32px 0 rgba(255, 122, 42, 0.16), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+}
+
+/* 7. Bold Orange iOS Liquid Glass Card */
+.glass-card-orange-bold {
+  background: rgba(255, 122, 42, 0.88);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  box-shadow: 0 14px 36px 0 rgba(255, 122, 42, 0.28), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.75);
+  border-radius: 1.5rem;
+}
+
+/* 8. Solid Grey Section Container */
+.glass-section-grey {
+  background: rgba(217, 221, 216, 0.75);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  box-shadow: 0 12px 32px 0 rgba(45, 55, 48, 0.07), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.90);
+  border-radius: 1.75rem;
+}
+
+/* 9. Floating Status Pills, Chips, & Badges */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 6px 18px 0 rgba(45, 55, 48, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  border-radius: 9999px;
+}
+
+/* 10. Floating Segmented Controls & Action Buttons */
+.glass-control {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 8px 24px 0 rgba(45, 55, 48, 0.09), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  border-radius: 0.85rem;
+}
+
+/* 11. iOS Liquid Glass Sidebar */
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border-right: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 6px 0 32px 0 rgba(45, 55, 48, 0.08), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+}
+
+/* 12. Floating iOS Liquid Header Bar */
+.glass-header {
+  background: rgba(250, 250, 247, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 8px 24px 0 rgba(45, 55, 48, 0.06), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* 13. Modals & Overlays */
+.glass-modal {
+  background: rgba(250, 250, 247, 0.92);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 48px 0 rgba(30, 35, 30, 0.16), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  border-radius: 1.75rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EEF0ED;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B9C4BC;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #718277;
+}
+
+/* ==========================================================
+   PRINT & PDF EXPORT STYLES
+   ========================================================== */
+@media print {
+  /* Strictly hide all navigation, headers, sidebars, controls, and footers */
+  aside,
+  nav,
+  footer,
+  header,
+  .glass-sidebar,
+  .print\:hidden,
+  [data-print-hide="true"] {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  /* Reset document flow to full page width */
+  html,
+  body,
+  #root,
+  .min-h-screen,
+  main {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #171c18 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+
+  /* Page margins */
+  @page {
+    size: A4 portrait;
+    margin: 1.2cm 1cm 1.2cm 1cm;
+  }
+}

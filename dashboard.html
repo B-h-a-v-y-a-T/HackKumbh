@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drishti AI | Examination Monitoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --panel-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-badge {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .camera-info {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .camera-info strong {
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        .evidence-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .evidence-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .object-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        
+        .object-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .object-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .object-name::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--warning);
+        }
+
+        .progress-bg {
+            width: 100px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            border-radius: 3px;
+        }
+
+        .footer-metrics {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .human-review {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--warning);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 6px;
+            border: 1px dashed rgba(245, 158, 11, 0.3);
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 0;
+            color: var(--text-muted);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Drishti AI</h1>
+                <p>Privacy-First Examination Monitoring</p>
+            </div>
+            <div class="status-indicator" id="connection-status">
+                <div class="pulse"></div>
+                Live System Active
+            </div>
+        </header>
+
+        <div class="grid" id="evidence-grid">
+            <div class="empty-state">Loading real-time evidence data...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000/evidence/';
+
+        function formatClassName(name) {
+            return name.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+
+        function createCard(event) {
+            const timeWindow = `${event.start_time}s - ${event.end_time}s`;
+            const seat = event.seat_ids && event.seat_ids.length > 0 ? event.seat_ids.join(', ') : 'Unknown Seat';
+            const camera = event.camera_id || 'Unknown Cam';
+            
+            let objectsHtml = '';
+            if (event.objects && event.objects.length > 0) {
+                objectsHtml = event.objects.map(obj => `
+                    <div class="object-row">
+                        <div class="object-name">${formatClassName(obj.object_class)}</div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 0.8rem; color: var(--text-muted)">${(obj.confidence * 100).toFixed(1)}%</span>
+                            <div class="progress-bg">
+                                <div class="progress-bar" style="width: ${obj.confidence * 100}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                objectsHtml = '<div style="color: var(--text-muted); font-size: 0.85rem;">No specific objects verified.</div>';
+            }
+
+            return `
+                <div class="card">
+                    <div class="card-header">
+                        <div class="camera-info">
+                            <strong>${seat}</strong>
+                            <span>Camera: ${camera} | Track: ${event.track_ids[0] || 'N/A'}</span>
+                        </div>
+                        <div class="alert-badge">${event.status.replace('_', ' ')}</div>
+                    </div>
+
+                    <div class="evidence-section">
+                        <div class="evidence-title">Verified Objects</div>
+                        ${objectsHtml}
+                    </div>
+
+                    <div class="human-review">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        Human Review Required
+                    </div>
+
+                    <div class="footer-metrics">
+                        <span>Window: ${timeWindow}</span>
+                        <span>Anomaly Score: ${(event.temporal_anomaly_score * 100).toFixed(1)}%</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function fetchEvidence() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                
+                const grid = document.getElementById('evidence-grid');
+                const status = document.getElementById('connection-status');
+                
+                status.style.color = 'var(--success)';
+                status.innerHTML = '<div class="pulse"></div> Live System Active';
+
+                if (data.length === 0) {
+                    grid.innerHTML = '<div class="empty-state">No suspicious events detected yet. Monitoring...</div>';
+                    return;
+                }
+
+                grid.innerHTML = data.map(event => createCard(event)).join('');
+            } catch (error) {
+                console.error('Error fetching evidence:', error);
+                const status = document.getElementById('connection-status');
+                status.style.color = 'var(--danger)';
+                status.innerHTML = '<div class="pulse" style="background-color: var(--danger)"></div> Connection Lost';
+            }
+        }
+
+        fetchEvidence();
+        setInterval(fetchEvidence, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+# Dhristi — Default Configuration
+# Part 1: Perception Pipeline (Performance-Optimized)
+
+camera:
+  source: 0                    # Webcam index, video path, RTSP URL, or "mock"
+  camera_id: "CAM_01"
+  width: 1280
+  height: 720
+  fps: 30
+
+detection:
+  model: "yolo11s-pose.pt"     # YOLO pose model (detection + 17 body keypoints + tracking)
+  confidence: 0.35             # Minimum detection confidence
+  device: "auto"               # "auto", "cpu", "cuda:0"
+  imgsz: 736                   # Input image size
+
+pose:
+  # Optional detailed pose estimation (133-keypoint hands/face via RTMPose)
+  detail_enabled: false        # Set true to add hand/face keypoints (slower)
+  mode: "lightweight"          # "lightweight" (fastest), "balanced", "performance"
+  backend: "onnxruntime"       # "onnxruntime" or "opencv"
+  device: "cpu"                # "cpu" or "cuda"
+  detail_interval: 5           # Run detailed pose every N frames (1 = every frame)
+  temporal_smoothing:
+    ema_alpha: 0.75            # EMA coordinate smoothing weight (0.1 to 1.0)
+    min_detection_conf: 0.20   # Minimum confidence to accept fresh joint
+    coast_decay: 0.95          # Confidence decay per coasting frame
+    max_coast_frames: 45       # Max frames to retain keypoints during occlusion
+
+
+tracking:
+  tracker: "custom_tracker.yaml"
+  coast_frames: 60             # Frames to keep track alive without detection
+  track_prefix: "T"            # Anonymous ID prefix (T1, T2, ...)
+
+seats:
+  auto_discover: true          # Automatically discover seats from stable positions
+  stability_frames: 60         # Frames at same position to confirm a seat
+  merge_distance: 50           # Pixel distance to merge nearby seat candidates
+  # manual_map:                # Optional manual seat map
+  #   S1: [200, 300]
+  #   S2: [500, 300]
+
+visibility:
+  min_confidence: 0.3          # Minimum keypoint confidence for visibility
+  head_weight: 0.30            # Weight in overall visibility score
+  shoulder_weight: 0.25
+  arm_weight: 0.20
+  hand_weight: 0.25
+
+head_orientation:
+  min_landmark_confidence: 0.3 # Below this, return UNKNOWN
+
+output:
+  format: "json"
+  destination: "none"          # "stdout", "none", or file path
+
+visualization:
+  enabled: true
+  show_skeleton: true
+  show_bbox: true
+  show_track_id: true
+  show_seat_id: true
+  show_head_direction: true
+  show_visibility: true
+  show_desk_roi: false
+  show_fps: true
+  show_hands: false
+  show_frame_health: true

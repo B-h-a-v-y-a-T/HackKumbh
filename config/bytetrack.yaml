@@ -1,0 +1,14 @@
+# ByteTrack tracker configuration for Ultralytics
+# See: https://docs.ultralytics.com/modes/track/
+
+tracker_type: bytetrack
+
+# ByteTrack parameters
+track_high_thresh: 0.5     # High detection threshold for first association
+track_low_thresh: 0.1      # Low detection threshold for second association
+new_track_thresh: 0.6      # Threshold for creating new tracks
+track_buffer: 30           # Frames to keep lost tracks (coast timeout)
+match_thresh: 0.8          # IoU threshold for matching
+# NOTE: fuse_score is often used to combine detection score with tracking confidence
+# Setting to true can improve tracking stability
+fuse_score: true

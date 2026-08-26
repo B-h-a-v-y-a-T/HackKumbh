@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DHRISTI — AI Exam Integrity System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & DESIGN TOKENS ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-main:#070a13;
+  --bg-panel:#0d1322;
+  --bg-card:#131b2e;
+  --bg-card-hover:#19233c;
+  --border:#1e2a45;
+  --border-focus:#38bdf8;
+  --text-primary:#f1f5f9;
+  --text-secondary:#94a3b8;
+  --text-muted:#64748b;
+  --accent-cyan:#38bdf8;
+  --accent-blue:#2563eb;
+  --risk-normal:#10b981;
+  --risk-monitoring:#38bdf8;
+  --risk-warning:#f59e0b;
+  --risk-alert:#ef4444;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg-main);color:var(--text-primary);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px}
+
+#app{display:flex;flex-direction:column;height:100vh}
+
+/* ── HEADER ── */
+#topHeader{
+  height:54px;background:var(--bg-panel);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 20px;gap:14px;flex-shrink:0;z-index:100;
+}
+.brand-group{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.brand-logo{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,#38bdf8,#1d4ed8);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;box-shadow:0 0 16px rgba(56,189,248,.25)
+}
+.brand-title{font-size:16px;font-weight:800;letter-spacing:-.02em;color:#fff}
+.brand-title span{color:var(--accent-cyan)}
+.v-sep{width:1px;height:24px;background:var(--border);margin:0 4px}
+.pill-badge{
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;
+  text-transform:uppercase;letter-spacing:.05em;white-space:nowrap
+}
+.pill-privacy{background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.25)}
+.pill-advisory{background:rgba(56,189,248,.1);color:var(--accent-cyan);border:1px solid rgba(56,189,248,.25)}
+.spacer{flex:1}
+
+/* Nav tabs */
+#sourceNav{display:flex;gap:3px;background:var(--bg-main);border:1px solid var(--border);border-radius:8px;padding:3px}
+.tab-btn{
+  display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;
+  font-size:11px;font-weight:600;cursor:pointer;border:none;font-family:'Plus Jakarta Sans',sans-serif;
+  background:transparent;color:var(--text-secondary);transition:all .15s;white-space:nowrap
+}
+.tab-btn:hover{color:#fff;background:var(--border)}
+.tab-btn.active{background:var(--accent-blue);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.4)}
+
+#telemetryPill{
+  display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;
+  font-family:'JetBrains Mono',monospace;color:var(--text-muted)
+}
+#liveDot{width:8px;height:8px;border-radius:50%;background:#ef4444;transition:background .3s}
+#liveDot.active{background:#10b981;box-shadow:0 0 10px #10b981}
+#liveDot.demo{background:#f59e0b;box-shadow:0 0 10px #f59e0b}
+
+/* ── MAIN WORKSPACE ── */
+#workspace{flex:1;display:flex;overflow:hidden}
+
+/* ── LEFT: VIEWPORT ── */
+#viewport{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg-main);position:relative}
+
+/* VIEW 1: SOURCE SELECTION / UPLOAD */
+#viewUpload{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:24px;padding:36px;overflow-y:auto
+}
+.upload-hero{text-align:center}
+.upload-hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.02em}
+.upload-hero p{font-size:13px;color:var(--text-secondary);max-width:520px;margin:0 auto;line-height:1.5}
+
+.drop-card{
+  width:100%;max-width:620px;
+  border:2px dashed #2563eb;border-radius:14px;background:rgba(37,99,235,.04);
+  padding:36px 24px;text-align:center;cursor:pointer;transition:all .2s;
+  display:flex;flex-direction:column;align-items:center;gap:8px
+}
+.drop-card:hover,.drop-card.drag-active{background:rgba(37,99,235,.09);border-color:#60a5fa}
+.drop-icon{font-size:40px;line-height:1}
+.drop-title{font-size:15px;font-weight:700;color:#fff}
+.drop-sub{font-size:11px;color:var(--text-muted)}
+.btn-browse{
+  background:var(--accent-blue);color:#fff;border:none;border-radius:7px;
+  padding:8px 22px;font-size:12px;font-weight:700;cursor:pointer;margin-top:6px;
+  transition:background .15s;font-family:'Plus Jakarta Sans',sans-serif
+}
+.btn-browse:hover{background:#1d4ed8}
+#fileUploadInput{display:none}
+#uploadProgressMsg{font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--accent-cyan)}
+
+.samples-box{width:100%;max-width:620px;display:flex;flex-direction:column;gap:10px}
+.samples-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted)}
+.samples-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sample-tile{
+  background:var(--bg-panel);border:1px solid var(--border);border-radius:10px;padding:14px;
+  cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:12px
+}
+.sample-tile:hover{border-color:var(--accent-cyan);background:var(--bg-card);transform:translateY(-1px)}
+.sample-tile-icon{font-size:24px}
+.sample-tile-name{font-size:12px;font-weight:700;color:#fff}
+.sample-tile-meta{font-size:10px;color:var(--text-muted);margin-top:2px}
+.btn-sample-play{
+  margin-left:auto;background:rgba(56,189,248,.15);color:var(--accent-cyan);
+  border:1px solid rgba(56,189,248,.3);border-radius:6px;padding:4px 9px;
+  font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace
+}
+
+/* VIEW 2: STREAM MONITOR */
+#viewStream{flex:1;display:flex;flex-direction:column;min-height:0;position:relative}
+#streamWrapper{flex:1;position:relative;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:0}
+#streamFeedImg{width:100%;height:100%;object-fit:contain;display:block}
+#webcamVideo{display:none}
+#webcamCanvas{display:none}
+
+/* Top HUD */
+.hud-top-left{position:absolute;top:12px;left:12px;display:flex;gap:6px;z-index:30}
+.hud-tag{
+  background:rgba(13,19,34,.88);border:1px solid var(--border);border-radius:6px;
+  padding:4px 10px;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;
+  backdrop-filter:blur(6px);color:var(--text-primary);display:flex;align-items:center;gap:6px
+}
+.hud-tag.active-tag{border-color:rgba(16,185,129,.4);color:#34d399}
+
+.hud-top-right{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:30}
+.hud-bottom-right{position:absolute;bottom:12px;right:12px;display:flex;gap:6px;z-index:30}
+
+/* Bottom Controls */
+#viewportBottomBar{
+  height:44px;background:var(--bg-panel);border-top:1px solid var(--border);
+  display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0;z-index:40
+}
+.vbar-meta{font-size:11px;color:var(--text-secondary)}
+.vbar-meta span{color:var(--accent-cyan);font-weight:700;font-family:'JetBrains Mono',monospace}
+.vbar-btn{
+  background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);
+  border-radius:6px;padding:4px 12px;font-size:11px;font-weight:600;cursor:pointer;
+  transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif
+}
+.vbar-btn:hover{color:#fff;background:var(--border);border-color:var(--text-muted)}
+
+/* ── RIGHT: INTELLIGENCE CONSOLE ── */
+#sidebarConsole{
+  width:350px;flex-shrink:0;background:var(--bg-panel);border-left:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden
+}
+.console-header{
+  height:46px;padding:0 16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0
+}
+.console-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary)}
+.alert-pill{
+  font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px;
+  font-family:'JetBrains Mono',monospace
+}
+.alert-pill.danger{background:rgba(239,68,68,.18);color:#f87171;border:1px solid rgba(239,68,68,.35)}
+.alert-pill.ok{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3)}
+
+/* Student List */
+#studentsList{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.student-row{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;
+  cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px
+}
+.student-row:hover{background:var(--bg-card-hover);border-color:var(--border-focus)}
+.student-row.selected{border-color:var(--accent-cyan);background:#16243d;box-shadow:0 0 14px rgba(56,189,248,.15)}
+.student-row.risk-high{border-left:4px solid var(--risk-alert)}
+.student-row.risk-med{border-left:4px solid var(--risk-warning)}
+.student-row.risk-low{border-left:4px solid var(--risk-monitoring)}
+.student-row.risk-norm{border-left:4px solid var(--risk-normal)}
+
+.sr-top{display:flex;align-items:center;justify-content:space-between}
+.sr-id{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--accent-cyan)}
+.sr-seat{font-size:11px;color:var(--text-muted)}
+.sr-score{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800}
+
+.sr-events{font-size:11px;color:var(--text-primary);line-height:1.4}
+.sr-meta{display:flex;gap:10px;font-size:10px;color:var(--text-muted)}
+
+/* Inspector Drawer */
+#inspectorDrawer{
+  background:var(--bg-main);border-top:1px solid var(--border);
+  padding:14px 16px;display:flex;flex-direction:column;gap:12px;flex-shrink:0;max-height:290px;overflow-y:auto
+}
+#inspectorDrawer.hidden{display:none}
+
+.ins-head{display:flex;align-items:center;justify-content:space-between}
+.ins-track{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--accent-cyan)}
+.ins-status{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;text-transform:uppercase}
+
+.ins-gauge{
+  background:var(--bg-panel);border:1px solid var(--border);border-radius:8px;padding:10px 12px;
+  display:flex;align-items:center;gap:12px
+}
+.ins-score-big{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:800;min-width:44px}
+.ins-gauge-bar-box{flex:1}
+.ins-gauge-label{font-size:10px;color:var(--text-muted);font-weight:600;margin-bottom:4px}
+.ins-track-bar{height:6px;background:var(--bg-main);border-radius:3px;overflow:hidden}
+.ins-fill-bar{height:100%;border-radius:3px;transition:width .4s,background .4s}
+
+.ins-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ins-metric{background:var(--bg-panel);border:1px solid var(--border);border-radius:6px;padding:6px 9px}
+.ins-metric-label{font-size:9px;text-transform:uppercase;color:var(--text-muted);letter-spacing:.05em}
+.ins-metric-val{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--text-primary);margin-top:2px}
+
+.ins-actions{display:flex;gap:6px}
+.btn-act{
+  flex:1;padding:7px 4px;border-radius:6px;font-size:10px;font-weight:700;
+  border:1px solid transparent;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
+  transition:all .15s;display:flex;align-items:center;justify-content:center;gap:4px
+}
+.btn-act.flag{background:rgba(239,68,68,.18);color:#f87171;border-color:rgba(239,68,68,.35)}
+.btn-act.flag:hover{background:rgba(239,68,68,.3)}
+.btn-act.ok{background:rgba(16,185,129,.15);color:#34d399;border-color:rgba(16,185,129,.3)}
+.btn-act.ok:hover{background:rgba(16,185,129,.25)}
+.btn-act.dismiss{background:var(--bg-panel);color:var(--text-secondary);border-color:var(--border)}
+.btn-act.dismiss:hover{background:var(--border);color:#fff}
+
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:48px 16px;color:var(--text-muted);text-align:center}
+
+/* ── TOAST NOTIFICATIONS ── */
+#toastBox{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;flex-direction:column-reverse;gap:8px;pointer-events:none}
+.alert-toast{
+  background:var(--bg-panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;
+  min-width:280px;max-width:380px;box-shadow:0 12px 32px rgba(0,0,0,.6);pointer-events:all;
+  display:flex;align-items:flex-start;gap:10px;animation:toastIn .2s ease
+}
+@keyframes toastIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.alert-toast.fade{opacity:0;transform:translateX(16px);transition:.25s}
+.alert-toast.danger{border-color:rgba(239,68,68,.45)}
+.alert-toast.warning{border-color:rgba(245,158,11,.45)}
+.alert-toast.success{border-color:rgba(16,185,129,.35)}
+.toast-body{flex:1}
+.toast-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:2px}
+.toast-msg{font-size:11px;color:var(--text-secondary);line-height:1.4}
+.toast-x{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:0;line-height:1}
+
+.hidden{display:none !important}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ── TOP HEADER ── -->
+  <header id="topHeader">
+    <div class="brand-group" onclick="selectSourceTab('upload')">
+      <div class="brand-logo">👁</div>
+      <div class="brand-title">DHRISTI <span>AI</span></div>
+    </div>
+    <div class="v-sep"></div>
+    <span class="pill-badge pill-privacy">🔒 Anonymous Tracking Only</span>
+    <span class="pill-badge pill-advisory">Advisory Mode</span>
+
+    <div class="spacer"></div>
+
+    <!-- Source Switcher Tabs -->
+    <div id="sourceNav">
+      <button class="tab-btn active" id="tabUpload" onclick="selectSourceTab('upload')">📁 Video Feeds</button>
+      <button class="tab-btn" id="tabLive" onclick="selectSourceTab('live')">📷 Live Webcam</button>
+      <button class="tab-btn" id="tabDemo" onclick="selectSourceTab('demo')">🧪 Simulation</button>
+    </div>
+
+    <div class="v-sep"></div>
+
+    <div id="telemetryPill">
+      <div id="liveDot"></div>
+      <span id="telemetryStatus">Connecting…</span>
+    </div>
+  </header>
+
+  <!-- ── WORKSPACE ── -->
+  <div id="workspace">
+
+    <!-- ── LEFT: VIEWPORT ── -->
+    <div id="viewport">
+
+      <!-- VIEW 1: UPLOAD / SAMPLE SELECTOR -->
+      <div id="viewUpload">
+        <div class="upload-hero">
+          <h1>Examination Video Surveillance</h1>
+          <p>Select a preloaded classroom feed or upload a recorded video. The AI pipeline runs YOLO11-pose tracking and behavioural intelligence in real time.</p>
+        </div>
+
+        <!-- Preloaded Samples -->
+        <div class="samples-box">
+          <div class="samples-label">Preloaded Classroom Feeds:</div>
+          <div class="samples-row" style="grid-template-columns: 1fr 1fr 1fr;">
+            <div class="sample-tile" onclick="startVideoFile('Seat No. 12 was seen taking a piece of paper from the desk.mkv', 'Seat 12 Exam Video')">
+              <div class="sample-tile-icon">🎯</div>
+              <div>
+                <div class="sample-tile-name">Seat 12 Exam Feed</div>
+                <div class="sample-tile-meta">Paper retrieval case · 18.4 MB</div>
+              </div>
+              <div class="btn-sample-play">▶ Stream</div>
+            </div>
+
+            <div class="sample-tile" onclick="startVideoFile('demo_feed_1.mp4', 'Classroom Surveillance Feed 1')">
+              <div class="sample-tile-icon">🎥</div>
+              <div>
+                <div class="sample-tile-name">Classroom Feed 1 (Wide View)</div>
+                <div class="sample-tile-meta">Multi-desk examination view · 9.2 MB</div>
+              </div>
+              <div class="btn-sample-play">▶ Stream</div>
+            </div>
+
+            <div class="sample-tile" onclick="startVideoFile('demo_feed_2.mp4', 'Classroom Student Feed 2')">
+              <div class="sample-tile-icon">📹</div>
+              <div>
+                <div class="sample-tile-name">Classroom Feed 2 (Desk View)</div>
+                <div class="sample-tile-meta">Seated student tracking · 5.3 MB</div>
+              </div>
+              <div class="btn-sample-play">▶ Stream</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Upload Drag & Drop Card -->
+        <div class="drop-card" id="dropArea" onclick="document.getElementById('fileUploadInput').click()">
+          <div class="drop-icon">📂</div>
+          <div class="drop-title">Upload Custom Examination Recording</div>
+          <div class="drop-sub">Drag &amp; drop video here, or click to browse (MP4, MOV, AVI, WebM)</div>
+          <button class="btn-browse" type="button">Browse Local File</button>
+        </div>
+        <input type="file" id="fileUploadInput" accept="video/*" onchange="uploadLocalVideo(this)"/>
+        <div id="uploadProgressMsg"></div>
+      </div>
+
+      <!-- VIEW 2: REAL-TIME STREAM MONITOR -->
+      <div id="viewStream" class="hidden">
+        <div id="streamWrapper">
+          <img id="streamFeedImg" src="" alt="Live Video Feed"/>
+          <video id="webcamVideo" autoplay playsinline muted></video>
+          <canvas id="webcamCanvas"></canvas>
+
+          <!-- Top-Left HUD -->
+          <div class="hud-top-left">
+            <div class="hud-tag active-tag" id="hudSourceTag">● FEED ACTIVE</div>
+            <div class="hud-tag" id="hudFrameTag">Frame 0</div>
+          </div>
+
+          <!-- Bottom-Right HUD -->
+          <div class="hud-bottom-right">
+            <div class="hud-tag" id="hudFpsTag">0 FPS</div>
+            <div class="hud-tag" id="hudStudentCount">0 Tracked</div>
+          </div>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div id="viewportBottomBar">
+          <div class="vbar-meta">Active: <span id="vbarSourceName">Classroom Feed 1</span></div>
+          <div class="spacer"></div>
+          <button class="vbar-btn" onclick="selectSourceTab('upload')">📂 Change Video</button>
+          <button class="vbar-btn" onclick="selectSourceTab('live')">📷 Webcam</button>
+          <button class="vbar-btn" onclick="selectSourceTab('demo')">🧪 Simulation</button>
+        </div>
+      </div>
+
+    </div><!-- /viewport -->
+
+    <!-- ── RIGHT: INTELLIGENCE CONSOLE ── -->
+    <aside id="sidebarConsole">
+      <div class="console-header">
+        <span class="console-title">Student Integrity Monitor</span>
+        <span class="alert-pill ok" id="alertCountBadge">0 Normal</span>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div style="display:flex; border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(0,0,0,0.2);">
+        <button id="tabBtnStudents" class="tab-btn active" style="flex:1; padding:8px 12px; background:none; border:none; color:#f8fafc; font-size:12px; font-weight:600; cursor:pointer; border-bottom:2px solid #38bdf8;" onclick="switchConsoleTab('students')">
+          👥 Students (<span id="studentCountTab">0</span>)
+        </button>
+        <button id="tabBtnIncidents" class="tab-btn" style="flex:1; padding:8px 12px; background:none; border:none; color:#94a3b8; font-size:12px; font-weight:600; cursor:pointer;" onclick="switchConsoleTab('incidents')">
+          🚨 Evidence Events (<span id="eventCountTab">0</span>)
+        </button>
+      </div>
+
+      <!-- Student Cards List -->
+      <div id="studentsList">
+        <div class="empty-state">
+          <div style="font-size:24px">💤</div>
+          <div>Waiting for video telemetry…</div>
+        </div>
+      </div>
+
+      <!-- Synchronized Canonical Incident Feed -->
+      <div id="incidentsList" style="display:none; overflow-y:auto; flex:1; padding:8px;">
+        <div class="empty-state">
+          <div style="font-size:24px">📋</div>
+          <div>No contraband evidence events recorded yet</div>
+        </div>
+      </div>
+
+      <!-- Selected Student Inspector Drawer -->
+      <div id="inspectorDrawer" class="hidden">
+        <div class="ins-head">
+          <span class="ins-track" id="insTrackId">T01 · Seat S1</span>
+          <span class="ins-status" id="insStatusBadge">NORMAL</span>
+        </div>
+
+        <div class="ins-gauge">
+          <div class="ins-score-big" id="insScoreVal" style="color:#10b981">0</div>
+          <div class="ins-gauge-bar-box">
+            <div class="ins-gauge-label">Behavioural Risk Score</div>
+            <div class="ins-track-bar">
+              <div class="ins-fill-bar" id="insGaugeFill" style="width:0%;background:#10b981"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ins-grid">
+          <div class="ins-metric"><div class="ins-metric-label">Head Gaze</div><div class="ins-metric-val" id="insGazeVal">—</div></div>
+          <div class="ins-metric"><div class="ins-metric-label">Torso Angle</div><div class="ins-metric-val" id="insTorsoVal">—</div></div>
+          <div class="ins-metric"><div class="ins-metric-label">Desk Zone</div><div class="ins-metric-val" id="insDeskVal">—</div></div>
+          <div class="ins-metric"><div class="ins-metric-label">Writing Activity</div><div class="ins-metric-val" id="insWritingVal">—</div></div>
+        </div>
+
+        <div class="ins-actions">
+          <button class="btn-act flag" onclick="sendProctorDecision('FLAG_IN_PERSON')">🚩 Flag</button>
+          <button class="btn-act ok" onclick="sendProctorDecision('MARK_NATURAL')">✓ Normal</button>
+          <button class="btn-act dismiss" onclick="sendProctorDecision('DISMISS')">✕ Dismiss</button>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /workspace -->
+</div><!-- /app -->
+
+<div id="toastBox"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
